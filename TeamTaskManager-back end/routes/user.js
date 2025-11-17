@@ -9,4 +9,6 @@ router.post("/login", UserController.login);
 
 router.get("/tasks", authenticateToken, UserController.getMyTasks);
 
+router.put("/:id", authenticateToken, UserController.updateMyTaskStatus);
+
 module.exports = router;
