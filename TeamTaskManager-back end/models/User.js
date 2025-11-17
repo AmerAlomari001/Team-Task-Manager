@@ -17,7 +17,6 @@ const UserModel = {
     };
   },
 
-  // Get all users (Admin)
   getAllUsers: async () => {
     const [rows] = await pool.query(
       `SELECT id, username, email, role FROM users`
@@ -25,7 +24,6 @@ const UserModel = {
     return rows;
   },
 
-  // Find user by email (Used in login)
   findByEmail: async (email) => {
     const [rows] = await pool.query(
       `SELECT * FROM users WHERE email = ?`,
@@ -34,7 +32,6 @@ const UserModel = {
     return rows[0];
   },
 
-  // Find by ID (Used inside auth middleware if needed)
   findById: async (id) => {
     const [rows] = await pool.query(
       `SELECT * FROM users WHERE id = ?`,
@@ -43,7 +40,6 @@ const UserModel = {
     return rows[0];
   },
 
-  // Optional: Delete user (not required in exam)
   deleteUserById: async (id) => {
     const [result] = await pool.query(
       `DELETE FROM users WHERE id = ?`,
