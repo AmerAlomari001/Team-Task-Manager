@@ -2,6 +2,8 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const UserModel = require("../models/User");
+const TaskModel = require("../models/Task");
+
 require("dotenv").config();
 
 const UserService = {
@@ -38,6 +40,17 @@ const UserService = {
       },
     };
   },
+    getTasksByUser: async (userId) => {
+    return TaskModel.getTasksByUserId(userId);
+  },
+  updateTaskStatus: async (taskId, userId, status) => {
+    const task = await TaskModel.findById(taskId);
+
+    if (!task) throw new Error("Task not found");
+    if (task.assignedTo !== userId) throw new Error("Not your task");
+
+    return TaskModel.updateTaskStatus(taskId, status);
+  }
 };
 
 module.exports = UserService;
