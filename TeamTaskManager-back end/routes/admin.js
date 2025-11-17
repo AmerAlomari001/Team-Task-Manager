@@ -6,7 +6,7 @@ const adminOnly = require("../middelware/adminOnly");
 
 const adminController = require("../controller/admincontroller");
 
-router.post("/auth/register", authenticateToken, adminOnly, adminController.registerUser);
+router.post("/register", authenticateToken, adminOnly, adminController.registerUser);
 router.get("/users", authenticateToken, adminOnly, adminController.getAllUsers);
 router.post("/tasks", authenticateToken, adminOnly, adminController.createTask);
 router.get("/tasks", authenticateToken, adminOnly, adminController.getAllTasks);
